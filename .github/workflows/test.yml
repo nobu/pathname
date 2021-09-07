@@ -23,5 +23,10 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
     - name: Install dependencies
       run: bundle install
+    - name: Build
+      run: rake build
     - name: Run test
       run: rake compile test
+    - name: Installation test
+      run: gem install pkg/*.gem
+      continue-on-error: true
