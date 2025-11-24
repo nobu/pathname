@@ -10,22 +10,8 @@
 # For documentation, see class Pathname.
 #
 
-if defined?(::Pathname) # Clear builtin Pathname
-  # :stopdoc:
-  class ::Object
-    remove_const :Pathname
-  end
-
-  # Remove module_function Pathname
-  class << ::Kernel
-    undef Pathname
-  end
-  module ::Kernel
-    undef Pathname
-  end
-
-  $".delete('pathname.so')
-  # :startdoc:
+if defined?(::Pathname) # Already builtin Pathname exists
+  return
 end
 
 require 'pathname.so' if RUBY_ENGINE == 'ruby'
